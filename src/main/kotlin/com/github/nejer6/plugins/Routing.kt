@@ -23,6 +23,12 @@ fun Application.configureRouting() {
             )
         }
 
+        get("randomfile") {
+            call.respondText(
+                text = randomFilePicker.getRandomFile().name
+            )
+        }
+
         get("refresh") {
             randomFilePicker.updateFiles()
             call.respond(HttpStatusCode.OK)

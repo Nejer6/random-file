@@ -9,15 +9,34 @@
             text-align: center;
             background-color: #0C0C0C;
             color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #card {
+            background-color: #481E14;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
         }
 
         #textToCopy {
             padding: 10px;
-            background-color: #481E14;
-            border: 1px solid #9B3922;
+            background-color: #9B3922;
+            border-radius: 10px;
+            color: #ffffff;
             margin-bottom: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+        }
+
+        #buttonsRow {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
         }
 
         #refreshButton {
@@ -49,9 +68,15 @@
     </script>
 </head>
 <body>
-<div id="textToCopy" onclick="copyText()" th:text="${fileName}" onmousedown="this.style.backgroundColor='#9B3922'"
-     onmouseup="this.style.backgroundColor='#481E14'">
+<div id="card">
+    <div id="textToCopy" onclick="copyText()" th:text="${fileName}" onmousedown="this.style.backgroundColor='#9B3922'"
+         onmouseup="this.style.backgroundColor='#481E14'">12312312312312321
+    </div>
+    <div id="buttonsRow">
+        <button id="refreshButton" onclick="refresh()">Update files</button>
+<!--        <button></button>-->
+    </div>
+
 </div>
-<button id="refreshButton" onclick="refresh()">Refresh</button>
 </body>
 </html>
