@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RandomFilePicker</title>
     <style>
         body {
@@ -30,8 +31,16 @@
     </style>
     <script>
         function copyText() {
-            let text = document.getElementById("textToCopy");
-            navigator.clipboard.writeText(text.innerText)
+            const text = document.getElementById('textToCopy').innerText;
+            const el = document.createElement('textarea');
+            el.value = text;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
         }
 
         function refresh() {
