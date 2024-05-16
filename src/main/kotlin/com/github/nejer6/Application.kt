@@ -1,9 +1,11 @@
 package com.github.nejer6
 
 import com.github.nejer6.plugins.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.thymeleaf.*
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 import org.thymeleaf.templateresolver.FileTemplateResolver
@@ -28,6 +30,9 @@ fun Application.module() {
             suffix = ".html"
             characterEncoding = "utf-8"
         })
+    }
+    install(ContentNegotiation) {
+        json()
     }
     configureRouting()
 }
