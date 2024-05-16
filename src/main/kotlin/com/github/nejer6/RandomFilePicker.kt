@@ -12,7 +12,8 @@ class RandomFilePicker(
         collectFiles(directory)
     }
 
-    fun getRandomFile(): File {
+    fun getRandomFile(): File? {
+        if (files.isEmpty()) return null
         return files.random()
     }
 

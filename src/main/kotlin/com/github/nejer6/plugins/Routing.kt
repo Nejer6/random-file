@@ -16,16 +16,24 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
+            val randomFile = randomFilePicker.getRandomFile() ?: return@get call.respond(
+                HttpStatusCode.NotFound,
+                "File not found"
+            )
+
             call.respond(
                 ThymeleafContent(
                     "index",
-                    mapOf("fileName" to randomFilePicker.getRandomFile().name)
+                    mapOf("fileName" to randomFile.name)
                 )
             )
         }
 
         get("randomfile") {
-            val randomFile = randomFilePicker.getRandomFile()
+            val randomFile = randomFilePicker.getRandomFile() ?: return@get call.respond(
+                HttpStatusCode.NotFound,
+                "File not found"
+            )
             val name = randomFile.name
             val location = randomFile.absolutePath
             val parts = location.split('/')
