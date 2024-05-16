@@ -14,10 +14,16 @@ class RandomFilePicker(
 
     fun getRandomFile(): File? {
         if (files.isEmpty()) return null
-        return files.random()
+        var randomFile = files.random()
+        if (!randomFile.exists()) {
+            updateFiles()
+            randomFile = files.random()
+        }
+
+        return randomFile
     }
 
-    fun updateFiles() {
+    private fun updateFiles() {
         files.clear()
         collectFiles(directory)
     }

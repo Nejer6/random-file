@@ -46,10 +46,5 @@ fun Application.configureRouting() {
                 )
             )
         }
-
-        get("refresh") {
-            randomFilePicker.updateFiles()
-            call.respond(HttpStatusCode.OK)
-        }
     }
 }
