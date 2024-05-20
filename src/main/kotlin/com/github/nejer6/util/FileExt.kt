@@ -46,12 +46,3 @@ fun File.previousFiles(): List<File> {
     }
     return fileList.reversed()
 }
-
-fun main() {
-    val path = "C:\\Users\\nejer\\.gitconfig"
-    val file = File(path)
-    val previousFiles = file.previousFiles()
-    previousFiles.forEach {
-        println(it.absolutePath)
-    }
-}
