@@ -14,7 +14,7 @@ class StringParser(
 
         val currentChar = inputLower[currentIndex]
         val part = when {
-            currentChar.isDigit() -> Part.Number(parsePart { it.isDigit() }.toInt())
+            currentChar.isDigit() -> Part.Number(parsePart { it.isDigit() }.toLong())
             else -> Part.String(parsePart { !it.isDigit() })
         }
         return part
