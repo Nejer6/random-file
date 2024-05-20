@@ -35,7 +35,7 @@ fun Application.configureRouting() {
                 HttpStatusCode.NotFound,
                 "File not found"
             )
-            val files = randomFile.previousFiles()
+            val files = randomFile.previousFiles().drop(1)
             val list = files.map { file ->
                 val parts = file.absolutePath.split('/')
                 val location = "/" + parts.subList(2, parts.size - 1).joinToString("/")
