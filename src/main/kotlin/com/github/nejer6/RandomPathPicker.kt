@@ -3,7 +3,8 @@ package com.github.nejer6
 import java.io.File
 
 class RandomPathPicker(
-    private val directory: File
+    private val directory: File,
+    private val filter: (File) -> Boolean
 ) {
 
     private var rootPath = PathPartImpl()
@@ -42,10 +43,12 @@ class RandomPathPicker(
             if (file.isDirectory) {
                 collectFiles(file)
             } else {
-                rootPath.add(
-                    value = file.absolutePath,
-                    file = file
-                )
+                if (filter(file)) {
+                    rootPath.add(
+                        value = file.absolutePath,
+                        file = file
+                    )
+                }
             }
         }
     }

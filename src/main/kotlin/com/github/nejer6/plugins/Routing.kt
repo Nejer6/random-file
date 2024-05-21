@@ -12,7 +12,9 @@ fun Application.configureRouting() {
     val dirPath = "/random"
     val dir = File(dirPath)
 //    val randomFilePicker = RandomFilePicker(dir)
-    val randomPathPicker = RandomPathPicker(dir)
+    val randomPathPicker = RandomPathPicker(dir) {
+        it.name.first() != '.'
+    }
 
     routing {
         get("randomfile") {
