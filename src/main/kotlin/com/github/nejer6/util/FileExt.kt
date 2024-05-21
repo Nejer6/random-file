@@ -9,7 +9,7 @@ fun File.previous(
     var parent = parentFile
     while (true) {
         if (parent == null) return null
-        val foundFile = parent.findFirstFile(filter)!!
+        val foundFile = parent.findFirstFile(filter)
         if (foundFile == this) {
             parent = parent.parentFile
         } else {
@@ -45,7 +45,7 @@ fun File.previousFiles(
     filter: (File) -> Boolean
 ): List<File> {
     val fileList = mutableListOf(this)
-    var previousFile = this.previous(filter)
+    var previousFile = previous(filter)
     while (previousFile != null) {
         fileList.add(previousFile)
         previousFile = previousFile.previous(filter)
