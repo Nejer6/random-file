@@ -10,6 +10,7 @@ class RandomPathPicker(
 
     init {
         collectFiles(directory)
+        rootPath.print(0)
     }
 
     fun getRandomPart(): PathPart? {
@@ -31,6 +32,7 @@ class RandomPathPicker(
 
     private fun updateFiles() {
         rootPath = PathPartImpl()
+        rootPath.print(0)
         collectFiles(directory)
     }
 
