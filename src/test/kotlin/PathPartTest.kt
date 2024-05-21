@@ -101,6 +101,20 @@ class PathPartTest {
             file6
         )
 
+        val path7 = "C:\\random\\a\\2.txt"
+        val file7 = File(path7)
+        rootPart.add(
+            value = path7,
+            file7
+        )
+
+        val path8 = "C:\\random\\a\\11.txt"
+        val file8 = File(path8)
+        rootPart.add(
+            value = path8,
+            file8
+        )
+
         rootPart.print(0)
 
         val file1part = rootPart.getFilePathPart(0)!!

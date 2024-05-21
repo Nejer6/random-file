@@ -59,7 +59,7 @@ class PathPartImpl : PathPart {
             other = value.substring(nameEnd)
         }
 
-        val position = children.map { it.name }.binarySearch(name)
+        val position = children.map { it.name }.binarySearch(name, comparator)
         if (position < 0) {
             val childPathPart = PathPartImpl(
                 name = name,
