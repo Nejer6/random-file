@@ -2,6 +2,7 @@ package com.github.nejer6.plugins
 
 import com.github.nejer6.RandomPathPicker
 import com.github.nejer6.models.RandomFileResponse
+import com.github.nejer6.models.RandomFilesResponse
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -15,8 +16,17 @@ fun Application.configureRouting() {
     }
 
     routing {
-        get("randomfile") {
-            val files = randomPathPicker.getRandomFiles()
+        get("random-files") {
+            var files = randomPathPicker.getRandomFiles()
+            var update = false
+            for (file in files) {
+                if (!file.exists()) {
+                    randomPathPicker.updateFiles()
+                    files = randomPathPicker.getRandomFiles()
+                    update = true
+                    break
+                }
+            }
             val list = files.map { file ->
                 val parts = file.absolutePath.split('/')
                 val location = "/" + parts.subList(2, parts.size - 1).joinToString("/")
@@ -26,8 +36,12 @@ fun Application.configureRouting() {
                     location = location
                 )
             }
+            val response = RandomFilesResponse(
+                update = update,
+                files = list
+            )
 
-            call.respond(list)
+            call.respond(response)
         }
     }
 }

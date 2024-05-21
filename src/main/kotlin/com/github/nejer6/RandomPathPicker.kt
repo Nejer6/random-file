@@ -15,27 +15,19 @@ class RandomPathPicker(
     }
 
     fun getRandomFiles(): List<File> {
-        var index = randomIndex()
-        var randomPaths = rootPath.getFilePathPart(index)!!.allPrevious()
-        for (randomPath in randomPaths) {
-            if (!randomPath.file!!.exists()) {
-                updateFiles()
-                index = randomIndex()
-                randomPaths = rootPath.getFilePathPart(index)!!.allPrevious()
-                break
-            }
-        }
+        val index = randomIndex()
+        val randomPaths = rootPath.getFilePathPart(index)!!.allPrevious()
         return randomPaths.map { it.file!! }
+    }
+
+    fun updateFiles() {
+        rootPath = PathPartImpl()
+        rootPath.print(0)
+        collectFiles(directory)
     }
 
     private fun randomIndex(): Int {
         return (0..<rootPath.size).random()
-    }
-
-    private fun updateFiles() {
-        rootPath = PathPartImpl()
-        rootPath.print(0)
-        collectFiles(directory)
     }
 
     private fun collectFiles(directory: File) {
