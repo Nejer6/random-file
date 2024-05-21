@@ -22,7 +22,7 @@ fun Application.configureRouting() {
             )
             val files = randomFile.allPrevious(
                 //filter = { it.name.first() != '.' }
-            ).drop(1).map { it.file!! }
+            ).map { it.file!! }
             val list = files.map { file ->
                 val parts = file.absolutePath.split('/')
                 val location = "/" + parts.subList(2, parts.size - 1).joinToString("/")
