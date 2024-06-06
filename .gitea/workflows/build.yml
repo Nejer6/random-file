@@ -3,9 +3,7 @@ name: Build and Push Docker image
 on:
   push:
     tags:
-      - '*'
-    branches:
-      - master
+      - v*
 
 jobs:
   build:
@@ -35,6 +33,8 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
 
       - name: Build the Docker image
         run: docker build -t git.nejer6.ru/nejer/random-file:${{ steps.tag.outputs.tag }} .
