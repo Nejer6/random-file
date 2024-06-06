@@ -36,8 +36,9 @@ jobs:
         with:
           strip_v: true
 
-      - name: Build the Docker image
-        run: docker build -t git.nejer6.ru/nejer/random-file:${{ steps.tag.outputs.tag }} .
-
-      - name: Push the Docker image
-        run: docker push git.nejer6.ru/nejer/random-file:${{ steps.tag.outputs.tag }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: git.nejer6.ru/nejer/random-file:${{ steps.tag.outputs.tag }}
