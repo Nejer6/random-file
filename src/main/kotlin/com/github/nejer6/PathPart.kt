@@ -14,6 +14,8 @@ interface PathPart : Comparable<PathPart> {
 
     fun getFilePathPart(index: Int): PathPart?
 
+    fun getFilePathPart(absolutePath: String): PathPart?
+
     fun allPrevious(): List<PathPart>
 
     fun previous(): PathPart?

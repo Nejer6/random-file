@@ -17,12 +17,18 @@ fun Application.configureRouting() {
 
     routing {
         get("random-files") {
-            var files = randomPathPicker.getRandomFiles()
+            val usingDate = true
+
+            var files = randomPathPicker.getRandomFiles(
+                usingDate = usingDate
+            )
             var update = false
             for (file in files) {
                 if (!file.exists()) {
                     randomPathPicker.updateFiles()
-                    files = randomPathPicker.getRandomFiles()
+                    files = randomPathPicker.getRandomFiles(
+                        usingDate = usingDate
+                    )
                     update = true
                     break
                 }

@@ -89,6 +89,19 @@ class PathPartImpl : PathPart {
         return null
     }
 
+    override fun getFilePathPart(absolutePath: String): PathPart? {
+        val parts = absolutePath.split(File.separator).filter { it.isNotEmpty() }
+        var current: PathPart = this
+        for (part in parts) {
+            val next = current.children.find { it.name == part }
+            if (next == null) {
+                return null
+            }
+            current = next
+        }
+        return current
+    }
+
     override fun allPrevious(): List<PathPart> {
         val list = mutableListOf<PathPart>(this)
         var previousPart = previous()
